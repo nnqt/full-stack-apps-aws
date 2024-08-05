@@ -1,0 +1,19 @@
+services:
+  server:
+    build:
+      context: ./project-starter-code
+      dockerfile: ./Dockerfile.dev
+    ports:
+      - "8082:8082"
+    environment:
+      - PORT=8082
+      - FRONTEND_URL=http://localhost:3000
+
+  client:
+    build:
+      context: ./image-filter-app
+      dockerfile: ./Dockerfile.dev
+    ports:
+      - "3000:80"
+    environment:
+      - REACT_APP_API_URL=http://localhost:8082
